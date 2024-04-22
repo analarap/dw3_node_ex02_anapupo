@@ -1,0 +1,141 @@
+body {
+    background-color: rgb(255, 255, 255);
+    font-family: Montserrat;
+    margin: 0; /* Remover margem para layout flexível */
+    padding: 0;
+  }
+  
+  html {
+    height: -webkit-fill-available;
+  }
+  
+  .bi {
+    vertical-align: -0.200em;
+    pointer-events: none;
+    fill: currentColor;
+  }
+  
+  .dropdown-toggle {
+    outline: 0;
+  }
+  
+  .nav-flush .nav-link {
+    border-radius: 0;
+  }
+  
+  .btn-toggle {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.5rem;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.65);
+    background-color: transparent;
+    border: 0;
+  }
+  
+  .btn-toggle:hover,
+  .btn-toggle:focus {
+    color: rgba(0, 0, 0, 0.85);
+    background-color: #d2f4ea;
+  }
+  
+  .btn-toggle::before {
+    width: 1.25em;
+    line-height: 0;
+    content: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='rgba(0,0,0,.5)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 14l6-6-6-6'/%3e%3c/svg%3e");
+    transition: transform 0.35s ease;
+    transform-origin: 0.5em 50%;
+  }
+  
+  .btn-toggle[aria-expanded="true"] {
+    color: rgba(0, 0, 0, 0.85);
+  }
+  
+  .btn-toggle[aria-expanded="true"]::before {
+    transform: rotate(90deg);
+  }
+  
+  .btn-toggle-nav a {
+    display: inline-flex;
+    padding: 0.1875rem 0.5rem;
+    margin-top: 0.125rem;
+    margin-left: 1.25rem;
+    text-decoration: none;
+  }
+  
+  .btn-toggle-nav a:hover,
+  .btn-toggle-nav a:focus {
+    background-color: #d2f4ea;
+  }
+  
+  .scrollarea {
+    overflow-y: auto;
+  }
+  
+  .fw-semibold {
+    font-weight: 600;
+  }
+  
+  .lh-tight {
+    line-height: 1.25;
+  }
+  
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 4.5rem;
+    height: 100vh;
+    background-color: rgb(240, 240, 240); 
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .content {
+    position: fixed;
+    top: 0;
+    left: 4.5rem; 
+    right: 0;
+    height: 100vh;
+    overflow-y: auto;
+    z-index: 999;
+    background-color: rgb(255, 255, 255);
+  }
+
+  .btn-outline-secondary:hover {
+    background-color: #0d6efd;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #0d6efd;
+}
+
+  h1{
+    color: #8ec641;
+  }
+
+  h3{
+    color: #75a8bd;
+  }
+
+  p{
+    color: #324158;
+  }
+
+  .small-text {
+    font-size: 0.875rem;
+    color: rgb(187, 187, 187);
+  }
+  
+  .container {
+    max-width: 960px;
+  }
+  
+
+@font-face {
+    font-family: montserrat;
+    src: url(../font/Montserrat/Montserrat-VariableFont_wght.ttf);
+}

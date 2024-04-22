@@ -1,0 +1,29 @@
+<div class="d-flex">
+  <div class="navbar">
+    <%- include('partials/sidebar.ejs') %>
+  </div>
+
+  <div class="content flex-grow-1">
+    <div class="container col-xxl-8 px-4 py-5">
+      <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+        <div class="col-10 col-sm-8 col-lg-6">
+        </div>
+        <div class="col-lg-6">
+          <h1 class="display-5 fw-bold lh-1 mb-3">Painel Administrativo</h1>
+          <h3 class="display-10 fw-bold lh-1 mb-3">Clinica ALA</h3>
+          <p class="lead">Bem-vindo ao Painel Administrativo da Clínica ALA, o centro para agendamento de consultas e
+            gerenciamento de pacientes. Aqui a nossa equipe pode agendar consultas, gerenciar horários, cadastrar novos
+            pacientes e atualizar informações existentes.</p>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+            <a href="/consultas"><button type="button"
+                class="btn btn-primary btn-lg px-4 me-md-2">Consultas</button></a>
+            <a href="/pacientes"><button type="button"
+                class="btn btn-outline-secondary btn-lg px-4 me-md-2">Pacientes</button></a>
+          </div>
+        </div>
+      </div>
+      <%- include('partials/footer') %>
+    </div>
+  </div>
+</div>
+

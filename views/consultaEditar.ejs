@@ -1,0 +1,88 @@
+<div class="d-flex">
+  <div class="navbar">
+    <%- include('partials/sidebarConsulta.ejs') %>
+  </div>
+
+  <div class="container">
+    <main>
+      <div class="py-1 text-center">
+        <img class="d-block mx-auto mb-4" src="image/logo.png" alt="" width="30" height="70">
+        <h2>Consultas</h2>
+        <p class="lead">Edite dados de uma consulta</p>
+        <p class="small-text">*As consultas devem estar cadastrados no sistema para fazer a edição*</p>
+      </div>
+
+      <div class="container mt-4">
+        <div class="card">
+          <div class="card-body">
+            <form action="/consultas/atualizar/<%= consulta._id %>" method="POST">
+              <div class="mb-3">
+                <label for="paciente" class="form-label">CPF do paciente</label>
+                <input type="text" name="paciente" id="paciente" placeholder="Insira o cpf do paciente"
+                  value="<%= consulta.paciente %>" class="form-control" required />
+              </div>
+              <div class="mb-3">
+                <label for="cpf" class="form-label">Data da consulta</label>
+                <input type="date" name="data" id="data" placeholder="Insira a data da consulta"
+                  value="<%= consulta.data %>" class="form-control" required />
+              </div>
+              <div class="mb-3">
+                <label for="horario" class="form-label">Horário da consulta</label>
+                <input type="time" name="horario" id="horario" value="<%= consulta.horario %>" class="form-control"
+                  required />
+              </div>
+              <div class="mb-3">
+                <label para="especialista" class="form-label">Especialização</label>
+                <select name="especialista" id="especialista" class="form-control" required>
+                  <option value="<%= consulta.especialista %>">Selecione uma especialização</option>
+                  <option>Anestesiologia</option>
+                  <option>Cardiologia</option>
+                  <option>Dermatologia</option>
+                  <option>Endocrinologia</option>
+                  <option>Gastroenterologia</option>
+                  <option>Geriatria</option>
+                  <option>Ginecologia e Obstetrícia</option>
+                  <option>Hematologia</option>
+                  <option>Infectologia</option>
+                  <option>Nefrologia</option>
+                  <option>Neurologia</option>
+                  <option>Oftalmologia</option>
+                  <option>Ortopedia</option>
+                  <option>Pediatria</option>
+                  <option>Psiquiatria</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label para="medico" class="form-label">Médico Responsável</label>
+                <select name="medico" id="medico" class="form-control" required>
+                  <option value="<%= consulta.medico %>">Selecione um médico</option>
+                  <option>Dr. Ana Lara Pupo</option>
+                  <option>Dr. Augusto Oliveira</option>
+                  <option>Dr. Beatriz Santos</option>
+                  <option>Dr. Bruno Costa</option>
+                  <option>Dr. Camila Almeida</option>
+                  <option>Dr. Carlos Teixeira</option>
+                  <option>Dr. Daniel Rocha</option>
+                  <option>Dr. Eduardo Gomes</option>
+                  <option>Dr. Fernanda Ribeiro</option>
+                  <option>Dr. Felipe Mendes</option>
+                  <option>Dr. Gustavo Neves</option>
+                  <option>Dr. Helena Nascimento</option>
+                  <option>Dr. Isabela Ferreira</option>
+                  <option>Dr. João Pereira</option>
+                  <option>Dr. Júlia Rodrigues</option>
+                  <option>Dr. Leonardo Fernandes</option>
+                  <option>Dr. Lucas Lima</option>
+                  <option>Dr. Maria Eduarda Martins</option>
+                  <option>Dr. Rafael Moreira</option>
+                </select>
+              </div>
+              <input type="hidden" name="id" value="<%= consulta._id %>">
+              <input type="submit" class="btn btn-warning" value="Alterar"
+                onclick="return confirm('Confirma as alterações?')">
+            </form>
+          </div>
+        </div>
+      </div>
+
+  </div>

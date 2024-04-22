@@ -1,0 +1,42 @@
+<div class="d-flex">
+  <div class="navbar">
+    <%- include('partials/sidebarPaciente.ejs') %>
+  </div>
+
+  <div class="container">
+    <main>
+      <div class="py-1 text-center">
+        <img class="d-block mx-auto mb-4" src="image/logo.png" alt="" width="30" height="70">
+        <h2>Pacientes</h2>
+        <p class="lead">Edite dados de um paciente</p>
+        <p class="small-text">*Os pacientes devem estar cadastrados no sistema para fazer a edição*</p>
+      </div>
+
+      <div class="container mt-4">
+        <div class="card">
+          <div class="card-body">
+            <form action="/pacientes/atualizar/<%= paciente._id %>" method="POST">
+              <div class="mb-3">
+                <label for="nome" class="form-label">Nome</label>
+                <input type="text" name="nome" id="nome" placeholder="Insira o nome do paciente"
+                  value="<%= paciente.nome %>" class="form-control" required />
+              </div>
+              <div class="mb-3">
+                <label for="cpf" class="form-label">CPF do paciente</label>
+                <input type="text" name="cpf" id="cpf" placeholder="Insira o cpf do paciente"
+                  value="<%= paciente.cpf %>" class="form-control" required />
+              </div>
+              <div class="mb-3">
+                <label for="dataNascimento" class="form-label">Data de nascimento</label>
+                <input type="date" name="dataNascimento" id="dataNascimento" value="<%= paciente.dataNascimento %>"
+                  class="form-control" required />
+              </div>
+              <input type="hidden" name="id" value="<%= paciente._id %>">
+              <input type="submit" class="btn btn-warning" value="Alterar"
+                onclick="return confirm('Confirma as alterações?')">
+            </form>
+          </div>
+        </div>
+      </div>
+
+  </div>

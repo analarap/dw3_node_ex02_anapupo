@@ -1,0 +1,166 @@
+<div class="d-flex">
+  <div class="navbar">
+    <%- include('partials/sidebarConsulta.ejs') %>
+  </div>
+
+
+  <div class="container">
+    <main>
+      <div class="py-1 text-center">
+        <img class="d-block mx-auto mb-4" src="image/logo.png" alt="" width="30" height="70">
+        <h2>Consultas</h2>
+        <p class="lead">Agende as consultas de seus pacientes já cadastrados</p>
+        <p class="small-text">*Os pacientes devem estar cadastrados no sistema para realizar a consulta*</p>
+      </div>
+
+      <div class="row g-1">
+        <form class="card p-2 mt-4" onsubmit="buscarConsulta(event)">
+          <div class="input-group">
+            <input type="text" class="form-control" id="consulta-id" placeholder="Pesquise consulta por ID">
+            <button type="submit" class="btn btn-secondary">Pesquisar</button>
+          </div>
+        </form>
+
+        <script>
+          function buscarConsulta(event) {
+            event.preventDefault();
+            const consultaId = document.getElementById("consulta-id").value;
+            if (consultaId) {
+              fetch(`/consultas/id/${consultaId}`)
+                .then(response => {
+                  if (response.ok) {
+                    window.location.href = `/consultas/id/${consultaId}`;
+                  } else {
+                    alert("Consulta não encontrada. Verifique o ID e tente novamente.");
+                  }
+                })
+                .catch(error => {
+                  console.error("Erro ao buscar consulta:", error);
+                  alert("Ocorreu um erro ao buscar a consulta. Tente novamente mais tarde.");
+                });
+            } else {
+              alert("Por favor, insira um ID válido para a busca.");
+            }
+          }
+        </script>
+
+        <div class="container mt-4">
+          <div class="card">
+            <div class="card-body">
+              <form action="/consultas/nova" method="POST">
+                <div class="mb-3">
+                  <label for="paciente" class="form-label">CPF do Paciente</label>
+                  <input type="text" name="paciente" id="paciente" placeholder="Insira o CPF do cliente"
+                    class="form-control" required />
+                </div>
+                <div class="mb-3">
+                  <label for="data" class="form-label">Data da Consulta</label>
+                  <input type="date" name="data" id="data" class="form-control" required />
+                </div>
+                <div class="mb-3">
+                  <label para="horario" class="form-label">Horário da Consulta</label>
+                  <input type="time" name="horario" id="horario" class="form-control" required />
+                </div>
+                <div class="mb-3">
+                  <label para="especialista" class="form-label">Especialização</label>
+                  <select name="especialista" id="especialista" class="form-control" required>
+                    <option value="">Selecione uma especialização</option>
+                    <option>Anestesiologia</option>
+                    <option>Cardiologia</option>
+                    <option>Dermatologia</option>
+                    <option>Endocrinologia</option>
+                    <option>Gastroenterologia</option>
+                    <option>Geriatria</option>
+                    <option>Ginecologia e Obstetrícia</option>
+                    <option>Hematologia</option>
+                    <option>Infectologia</option>
+                    <option>Nefrologia</option>
+                    <option>Neurologia</option>
+                    <option>Oftalmologia</option>
+                    <option>Ortopedia</option>
+                    <option>Pediatria</option>
+                    <option>Psiquiatria</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label para="medico" class="form-label">Médico Responsável</label>
+                  <select name="medico" id="medico" class="form-control" required>
+                    <option value="">Selecione um médico</option>
+                    <option>Dr. Ana Lara Pupo</option>
+                    <option>Dr. Augusto Oliveira</option>
+                    <option>Dr. Beatriz Santos</option>
+                    <option>Dr. Bruno Costa</option>
+                    <option>Dr. Camila Almeida</option>
+                    <option>Dr. Carlos Teixeira</option>
+                    <option>Dr. Daniel Rocha</option>
+                    <option>Dr. Eduardo Gomes</option>
+                    <option>Dr. Fernanda Ribeiro</option>
+                    <option>Dr. Felipe Mendes</option>
+                    <option>Dr. Gustavo Neves</option>
+                    <option>Dr. Helena Nascimento</option>
+                    <option>Dr. Isabela Ferreira</option>
+                    <option>Dr. João Pereira</option>
+                    <option>Dr. Júlia Rodrigues</option>
+                    <option>Dr. Leonardo Fernandes</option>
+                    <option>Dr. Lucas Lima</option>
+                    <option>Dr. Maria Eduarda Martins</option>
+                    <option>Dr. Rafael Moreira</option>
+                  </select>
+                </div>
+
+                <button type="submit" class="btn btn-success">Cadastrar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="validacao-form.js"></script>
+
+        <div class="card mt-5 p-5">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead class="table-dark">
+                  <tr>
+                    <th>CPF do Paciente</th>
+                    <th>Data</th>
+                    <th>Horário</th>
+                    <th>Especialista</th>
+                    <th>Médico</th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% consulta.forEach(consulta=> { %>
+                    <tr>
+                      <td>
+                        <%= consulta.paciente %>
+                      </td>
+                      <td>
+                        <%= consulta.data %>
+                      </td>
+                      <td>
+                        <%= consulta.horario %>
+                      </td>
+                      <td>
+                        <%= consulta.especialista %>
+                      </td>
+                      <td>
+                        <%= consulta.medico %>
+                      </td>
+                      <td><a style="color: orange;" href="/consultas/editar/<%= consulta._id %>">Editar</a></td>
+                      <td><a style="color: red;" href="/consultas/deletar/<%= consulta._id %>"
+                          onclick="return confirm('Confirma a exclusão do registro?')">Excluir</a></td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <%- include('partials/footer') %>

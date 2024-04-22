@@ -1,0 +1,109 @@
+<div class="d-flex">
+  <div class="navbar">
+    <%- include('partials/sidebarPaciente.ejs') %>
+  </div>
+
+  <div class="container">
+    <main>
+      <div class="py-1 text-center">
+        <img class="d-block mx-auto mb-4" src="image/logo.png" alt="" width="30" height="70">
+        <h2>Pacientes</h2>
+        <p class="lead">Cadastre novos pacientes</p>
+        <p class="small-text">*Os pacientes devem estar cadastrados no sistema para fazer a consulta*</p>
+      </div>
+
+      <div class="row g-1">
+        <form class="card p-2 mt-4" onsubmit="buscarPaciente(event)">
+          <div class="input-group">
+            <input type="text" class="form-control" id="consulta-id" placeholder="Pesquise paciente por CPF">
+            <button type="submit" class="btn btn-secondary">Pesquisar</button>
+          </div>
+        </form>
+
+        <script>
+          function buscarPaciente(event) {
+            event.preventDefault();
+            const pacienteCpf = document.getElementById("consulta-id").value;
+            if (pacienteCpf) {
+              fetch(`/pacientes/cpf/${pacienteCpf}`)
+                .then(response => {
+                  if (response.ok) {
+                    window.location.href = `/pacientes/cpf/${pacienteCpf}`;
+                  } else {
+                    alert("Paciente não encontrado. Verifique o CPF e tente novamente.");
+                  }
+                })
+                .catch(error => {
+                  console.error("Erro ao buscar paciente:", error);
+                  alert("Ocorreu um erro ao buscar o paciente. Tente novamente mais tarde.");
+                });
+            } else {
+              alert("Por favor, insira um CPF válido para a busca.");
+            }
+          }
+        </script>
+
+        <div class="container mt-4">
+          <div class="card">
+            <div class="card-body">
+              <form action="/pacientes/novo" method="POST">
+                <div class="mb-3">
+                  <label for="nome" class="form-label">Nome</label>
+                  <input type="text" name="nome" id="nome" placeholder="Insira o nome do paciente" class="form-control"
+                    required />
+                </div>
+                <div class="mb-3">
+                  <label for="cpf" class="form-label">CPF do paciente</label>
+                  <input type="text" name="cpf" id="cpf" placeholder="Insira o cpf do paciente" class="form-control"
+                    required />
+                </div>
+                <div class="mb-3">
+                  <label for="dataNascimento" class="form-label">Data de nascimento</label>
+                  <input type="date" name="dataNascimento" id="dataNascimento" class="form-control" required />
+                </div>
+                <button type="submit" class="btn btn-success">Cadastrar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <script src="validacao-form.js"></script>
+
+        <div class="card mt-4">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead class="table-dark">
+                  <tr>
+                    <th>Nome</th>
+                    <th>CPF</th>
+                    <th>Data de Nascimento</th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% paciente.forEach(paciente=> { %>
+                    <tr>
+                      <td>
+                        <%= paciente.nome %>
+                      </td>
+                      <td>
+                        <%= paciente.cpf %>
+                      </td>
+                      <td>
+                        <%= paciente.dataNascimento %>
+                      </td>
+                      <td><a style="color: orange;" href="/pacientes/editar/<%= paciente._id %>">Editar</a></td>
+                      <td><a style="color: red;" href="/pacientes/deletar/<%= paciente._id %>"
+                          onclick="return confirm('Confirma a exclusão do registro?')">Excluir</a></td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <%- include('partials/footer') %>

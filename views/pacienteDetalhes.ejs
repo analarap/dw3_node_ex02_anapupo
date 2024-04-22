@@ -1,0 +1,28 @@
+<div class="d-flex">
+    <div class="navbar">
+      <%- include('partials/sidebarPaciente.ejs') %>
+    </div>
+
+<div class="container">
+    <main>
+      <div class="py-1 text-center">
+        <img class="d-block mx-auto mb-4" src="image/logo.png" alt="" width="30" height="70">
+        <h2>Detalhes do Paciente</h2>
+        <p class="lead"><%= paciente.nome %></p>
+      </div>
+
+      <div class="card mt-4">
+        <div class="card-body">
+          <div class="table-responsive">
+            <div class="card">
+                <div class="card-body">
+                  <p><strong>Nome:</strong> <%= paciente.nome %></p>
+                  <p><strong>CPF:</strong> <%= paciente.cpf %></p>
+                  <p><strong>Data de Nascimento:</strong> <%= paciente.dataNascimento %></p>
+                  <a href="/pacientes/editar/<%= paciente._id %>" class="btn btn-warning">Editar</a>
+                  <a href="/pacientes/deletar/<%= paciente._id %>" onclick="return confirm('Confirma a exclusão do registro?')" class="btn btn-danger">Excluir</a>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>      

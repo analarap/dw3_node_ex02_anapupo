@@ -1,0 +1,30 @@
+<div class="d-flex">
+    <div class="navbar">
+      <%- include('partials/sidebarConsulta.ejs') %>
+    </div>
+
+<div class="container">
+    <main>
+      <div class="py-1 text-center">
+        <img class="d-block mx-auto mb-4" src="image/logo.png" alt="" width="30" height="70">
+        <h2>Detalhes da Consulta</h2>
+        <p class="lead"><%= consulta.id %></p>
+      </div>
+
+      <div class="card mt-4">
+        <div class="card-body">
+          <div class="table-responsive">
+            <div class="card">
+                <div class="card-body">
+                  <p><strong>CPF do Paciente:</strong> <%= consulta.paciente %></p>
+                  <p><strong>Data da Consulta:</strong> <%= consulta.data %></p>
+                  <p><strong>Horário da Consulta:</strong> <%= consulta.horario %></p>
+                  <p><strong>Especialista:</strong> <%= consulta.especialista %></p>
+                  <p><strong>Médico Responsável:</strong> <%= consulta.medico %></p>
+                  <a href="/consultas/editar/<%= consulta._id %>" class="btn btn-warning">Editar</a>
+                  <a href="/consultas/deletar/<%= consulta._id %>" onclick="return confirm('Confirma a exclusão do registro?')" class="btn btn-danger">Excluir</a>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>      
