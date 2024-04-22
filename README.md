@@ -7,7 +7,7 @@ To set up the project, follow these steps:
 
 1. **Clone the repository**: Copy the link to the repository and use it to clone the project onto your local machine.
    ```bash
-   git clone <repository_link>
+   git clone <[crud-nodeJS](https://github.com/analuztx/crud-nodeJS.git)>
 
 2. **Install dependencies**: Navigate to the project folder and run the following command to install all necessary dependencies:
     ```bash
